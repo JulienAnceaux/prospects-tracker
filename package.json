@@ -1,0 +1,10 @@
+{
+  "name": "prospects-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "check": "node --check api/_lib/auth.mjs && node --check api/communes.mjs && node --check api/prospects.mjs && node --check api/login.mjs && node --check api/logout.mjs && node --check api/me.mjs && node --check public/app.js"
+  }
+}

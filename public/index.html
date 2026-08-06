@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Détection de divisions cadastrales récentes, signal de prospection amont.">
+    <title>Prospects Tracker</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main id="login" class="login-shell" hidden>
+      <section class="login-card">
+        <p class="eyebrow">JAC DIGITAL</p>
+        <h1>Prospects<br>Tracker</h1>
+        <p class="muted">Détectez les divisions cadastrales récentes, signal amont d’une mise en vente potentielle.</p>
+        <form id="login-form">
+          <label for="password">Mot de passe</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required>
+          <button type="submit">Accéder à l’espace</button>
+          <p id="login-error" class="error" role="alert"></p>
+        </form>
+      </section>
+    </main>
+
+    <main id="app" hidden>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">PROSPECTION AMONT</p>
+          <h1>Prospects Tracker</h1>
+        </div>
+        <button id="logout" class="ghost">Déconnexion</button>
+      </header>
+
+      <section class="hero">
+        <div>
+          <h2>Rechercher une commune</h2>
+          <p>Détecte les parcelles dont la fiche cadastrale a été modifiée récemment (moins de 12 mois) — signal d’une division volontaire, souvent liée à une vente à venir.</p>
+        </div>
+        <div class="commune-search">
+          <label for="commune">Commune</label>
+          <input id="commune" autocomplete="off" placeholder="Ex. Pontoise, Osny, Cergy…">
+          <div id="suggestions" class="suggestions" hidden></div>
+        </div>
+      </section>
+
+      <section id="empty" class="empty">
+        <p>Sélectionnez une commune pour lancer l’analyse.</p>
+      </section>
+
+      <section id="workspace" hidden>
+        <div class="summary">
+          <div class="metric"><span>Commune</span><strong id="metric-commune">—</strong></div>
+          <div class="metric"><span>Parcelles analysées</span><strong id="metric-scanned">0</strong></div>
+          <div class="metric"><span>Prospects qualifiés</span><strong id="metric-qualifies">0</strong></div>
+          <div class="metric"><span>Score moyen</span><strong id="metric-score">0</strong></div>
+        </div>
+
+        <div class="notice">
+          <strong>V1 :</strong> score basé uniquement sur la division cadastrale récente (+40). PermisAPI (+30) et DVF (+20) arriveront en V2.
+        </div>
+
+        <div id="truncated-notice" class="notice" hidden>
+          <strong>Attention :</strong> commune volumineuse, analyse limitée aux premières parcelles retournées par le cadastre.
+        </div>
+
+        <div class="filters">
+          <input id="text-filter" placeholder="Section, numéro de parcelle">
+          <label class="surface">Surface min. <input id="surface-filter" type="number" min="0" value="0"> m²</label>
+          <button id="export" class="secondary">Exporter CSV</button>
+        </div>
+
+        <p id="status" class="status" role="status"></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Score</th>
+                <th>Parcelle</th>
+                <th>Section</th>
+                <th>Surface</th>
+                <th>Créée le</th>
+                <th>Modifiée le</th>
+                <th>Arpentée</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
