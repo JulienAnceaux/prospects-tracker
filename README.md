@@ -29,4 +29,4 @@ Intégrer PermisAPI (nécessite une clé) et DVF (public, croisement par adresse
 
 ## Déploiement
 
-Vercel, projet `prospects-tracker`, équipe `jac-digital`. https://prospects-tracker-jac-digital.vercel.app
+Vercel, projet `prospects-tracker`, équipe `jac-digital`. [prospects-tracker-jac-digital.vercel.app](https://prospects-tracker-jac-digital.vercel.app)
